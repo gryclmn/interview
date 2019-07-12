@@ -12,7 +12,7 @@ Results should be printed to standard output after following the build instructi
 
 ### Services
 
-Each service has the ability to get routes. Services can retreive all routes or retrieve routes for a specific user.
+Each service has the ability to get routes. Services can retrieve all routes or retrieve routes for a specific user.
 
 #### Strava
 
@@ -53,4 +53,9 @@ return the user's routes for only the services listed.
 
 ## Building/Running
 
-TODO: please provide instructions to build and run your program(s) along with any require tools an dependencies.
+### Required Dependencies
+Kotlin 1.3
+Java SDK 9
+
+### Building and Running
+Simply run Main.kt using your IDE, such as IntelliJ Community Edition.
