@@ -6,3 +6,6 @@
 
 # IDEA files
 *.idea
+
+# lib files
+*lib

@@ -1,22 +1,24 @@
 fun main() {
 
     val strava = Service(
+        "Strava",
         setOf("SRT", "CVT", "Perkiomen"),
-        isPrependedWithUserId = true
+        {userId, route -> "$userId$route"}
     )
     val rwgps = Service(
+        "RWGPS",
         setOf("CVT", "Perkiomen", "Welsh Mountain"),
-        isAppendedWithUserId = true
+        {userId, route -> "$route$userId"}
     )
     val komoot = Service(
+        "Komoot",
         setOf("SRT", "Welsh Mountain", "Oaks to Philly"),
-        isPrependedWithUserId = true,
-        isAppendedWithUserId = true
+        {userId, route -> "$userId$route$userId"}
     )
     val serviceManager = ServiceManager()
-    serviceManager.services.add(strava)
-    serviceManager.services.add(rwgps)
-    serviceManager.services.add(komoot)
+    serviceManager.addService(strava)
+    serviceManager.addService(rwgps)
+    serviceManager.addService(komoot)
 
     val randomUserId = (0..1000).random()
 
@@ -40,9 +42,9 @@ fun main() {
     println("All routes across all services for user $randomUserId: " +
             "${serviceManager.getAllRoutesByUserId(randomUserId)}")
 
-    // Given a user id and a subset of the list of services (e.g. ["Strava", "Komoot"])
+    // Given a user id and a subset of the list of services (e.g. ["Strava", "RWGPS"])
     // return the user's routes for only the services listed.
     println("All routes for user $randomUserId in Strava and RWGPS: " +
-            "${serviceManager.getAllRoutesByUserIdForServices(randomUserId, setOf(strava, komoot))}")
+            "${serviceManager.getAllRoutesByUserIdForServices(randomUserId, setOf("strava", "rwgps"))}")
 
 }
