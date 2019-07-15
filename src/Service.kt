@@ -1,19 +1,13 @@
 class Service(
-    // Instructions state the routes are fixed for this exercise,
-    // therefore we are sticking with an immutable collection for routes.
-    // I imagine in the Karoo the routes would be mutable.
-    val routes: Set<String>,
-    val isPrependedWithUserId: Boolean = false,
-    val isAppendedWithUserId: Boolean = false,
-    val isAllUpperCase: Boolean = false) {
+        val name: String,
+        // Instructions state the routes are fixed for this exercise,
+        // therefore we are sticking with an immutable collection for routes.
+        // I imagine in the Karoo the routes would be mutable.
+        val routes: Set<String>,
+        val modifier: (userId: Int, route: String) -> String = {_,_ -> ""}) {
 
     private fun modifyRouteWithUserId(route: String, userId: Int): String {
-        var modifiedRoute = route
-        if (isPrependedWithUserId) modifiedRoute = "$userId$modifiedRoute"
-        if (isAppendedWithUserId) modifiedRoute = "$modifiedRoute$userId"
-        if (isAllUpperCase) modifiedRoute = modifiedRoute.toUpperCase()
-
-        return modifiedRoute
+        return modifier(userId, route)
     }
 
     fun getRoutesByUserId(userId: Int): Set<String> {
