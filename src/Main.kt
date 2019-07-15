@@ -2,19 +2,19 @@ fun main() {
 
     val strava = Service(
         "Strava",
-        setOf("SRT", "CVT", "Perkiomen"),
-        {userId, route -> "$userId$route"}
-    )
+        setOf("SRT", "CVT", "Perkiomen")
+    ) { userId, route -> "$userId$route"}
+
     val rwgps = Service(
         "RWGPS",
-        setOf("CVT", "Perkiomen", "Welsh Mountain"),
-        {userId, route -> "$route$userId"}
-    )
+        setOf("CVT", "Perkiomen", "Welsh Mountain")
+    ) { userId, route -> "$route$userId"}
+
     val komoot = Service(
         "Komoot",
-        setOf("SRT", "Welsh Mountain", "Oaks to Philly"),
-        {userId, route -> "$userId$route$userId"}
-    )
+        setOf("SRT", "Welsh Mountain", "Oaks to Philly")
+    ) { userId, route -> "$userId$route$userId"}
+
     val serviceManager = ServiceManager()
     serviceManager.addService(strava)
     serviceManager.addService(rwgps)

@@ -7,11 +7,6 @@ class Service(
         val modifier: (userId: Int, route: String) -> String = {_,_ -> ""}) {
 
     private fun modifyRouteWithUserId(route: String, userId: Int): String {
-//        var modifiedRoute = route
-//        if (isPrependedWithUserId) modifiedRoute = "$userId$modifiedRoute"
-//        if (isAppendedWithUserId) modifiedRoute = "$modifiedRoute$userId"
-//
-//        return modifiedRoute
         return modifier(userId, route)
     }
 

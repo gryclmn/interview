@@ -2,7 +2,7 @@
 // If not, this class probably should be a singleton.
 class ServiceManager {
 
-    val services = mutableMapOf<String, Service>()
+    private val services = mutableMapOf<String, Service>()
 
     fun addService(newService: Service) {
         services[newService.name.toUpperCase()] = newService
