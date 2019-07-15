@@ -6,10 +6,6 @@ class Service(
         val routes: Set<String>,
         val modifier: (userId: Int, route: String) -> String = {_,_ -> ""}) {
 
-    private fun modifyRouteWithUserId(route: String, userId: Int): String {
-        return modifier(userId, route)
-    }
-
     fun getRoutesByUserId(userId: Int): Set<String> {
 
         val routesByUserId = mutableSetOf<String>()
@@ -20,9 +16,9 @@ class Service(
         Following is an attempt to replicate this with an appearance of randomness.
         */
         if (userId % 2 > 0) {
-            routes.mapTo(routesByUserId, { modifyRouteWithUserId(it, userId) })
+            routes.mapTo(routesByUserId, { modifier(userId, it) })
         } else {
-            routesByUserId.add( modifyRouteWithUserId( routes.elementAt(userId % 3), userId) )
+            routesByUserId.add( modifier( userId, routes.elementAt(userId % 3) ) )
         }
 
         return routesByUserId

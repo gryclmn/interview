@@ -40,13 +40,14 @@ class ServiceManager {
             // check for that service somehow, such as a network call?
             // For the sake of this exercise I'm keeping it simple and only instantiating
             // a new service with no routes or modifiers.
-            if (services.containsKey(currentKey)) {
-                val currentService = services[currentKey] ?: Service(serviceString, setOf())
-                allRoutesByUserIdForServices.addAll(currentService.getRoutesByUserId(userId))
-            } else {
+            if (!services.containsKey(currentKey)) {
                 // Handle error of unknown service. For now simply print to console.
                 println("The $serviceString service is not recognized.")
             }
+
+            val currentService = services[currentKey] ?: Service(serviceString, setOf())
+            allRoutesByUserIdForServices.addAll(currentService.getRoutesByUserId(userId))
+
         }
 
         return allRoutesByUserIdForServices

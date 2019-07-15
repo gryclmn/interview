@@ -15,12 +15,13 @@ fun main() {
         setOf("SRT", "Welsh Mountain", "Oaks to Philly")
     ) { userId, route -> "$userId$route$userId"}
 
-    val serviceManager = ServiceManager()
-    serviceManager.addService(strava)
-    serviceManager.addService(rwgps)
-    serviceManager.addService(komoot)
+    val serviceManager = ServiceManager().apply {
+        addService(strava)
+        addService(rwgps)
+        addService(komoot)
+    }
 
-    val randomUserId = (0..1000).random()
+    val randomUserId = (1..1000).random()
 
     // Services can retrieve all routes
     println("Get all routes for Strava: ${strava.routes}")
